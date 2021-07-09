@@ -19,25 +19,46 @@
   position: relative;
   margin: 0 5%;
   .wizard-progress-icon {
-    color: blue;
-    &:active {
-      color: red;
-    }
+    color: gray;
   }
+  .wizard-progress-icon.active {
+    color: blue;
+  }
+
+  .wizard-progress-icon.done {
+    color: green;
+  }
+  .wizard-progress-icon:before {
+    content: "\2610"
+  }
+  .wizard-progress-icon.active:before {
+    content: "\2610"
+  }
+
+  .wizard-progress-icon.done:before {
+    content: "\2611"
+  }
+
   .wizard-progress-text {
     margin-top: 10px;
+    color: gray;
+  }
+  .wizard-progress-text.active {
+    color: blue;
   }
 }
 
-.wizard-progress-item:after {
-    content: ' ';
-    width: 100%;
-    left: 125%;
-    position: absolute;
-    border: 1px solid #BEC4CC;
-    top: 50%;
-    border-radius: 10px;
+.wizard-progress-icon:after {
+  content: ' ';
+  width: 65px;
+  left: 100%;
+  position: absolute;
+  border: 1px solid #BEC4CC;
+  top: 8px;
+  border-radius: 10px;
 }
-.wizard-progress-item:last-child:after {
-  display: none;
+.wizard-progress-item:last-child {
+  .wizard-progress-icon:after {
+    display: none;
+  }
 }

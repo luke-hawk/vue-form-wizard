@@ -20,8 +20,8 @@
                 :group="group"
                 :index="index">
             <div class="wizard-progress-item">
-              <span class="wizard-progress-icon" :class="{ active: activeGroup === index }"></span>
-              <div class="wizard-progress-text">
+              <span class="wizard-progress-icon" :class="{ active: activeGroup === index, done: index < activeGroup }"></span>
+              <div class="wizard-progress-text" :class="{ active: activeGroup === index }">
                 {{ group }} 
               </div>
             </div>
@@ -187,9 +187,9 @@
         default: function () {
           return [
             'group A',
-            'group B',
-            'group C',
-            'group D'
+            'group Blabla',
+            'new section',
+            'other name'
           ]
         }
       }
