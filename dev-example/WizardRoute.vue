@@ -7,8 +7,13 @@
     <form-wizard @on-complete="onComplete"
                  @on-change="handleChange"
                  :start-index.sync="activeIndex"
-                 color="#e74c3c">
-       <tab-content v-for="tab in tabs" :title="tab" :key="tab">{{tab}}</tab-content>
+                 color="#e74c3c"
+                 :groupedProgress="true">
+       <tab-content v-for="tab in tabs" :title="tab" :group="0" :key="tab">{{tab}}</tab-content>
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
+        <tab-content v-for="tab in tabs" :title="tab" :group="1" :key="tab">{{tab}}</tab-content>
         <transition name="fade" mode="out-in">
           <router-view></router-view>
         </transition>

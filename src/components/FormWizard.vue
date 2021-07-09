@@ -8,11 +8,27 @@
       </slot>
     </div>
     <div class="wizard-navigation">
-      <div class="wizard-progress-with-circle" v-if="!isVertical">
+      <div class="wizard-progress-with-circle" v-if="!isVertical && !groupedProgress">
         <div class="wizard-progress-bar"
              :style="progressBarStyle"></div>
       </div>
-      <ul class="wizard-nav wizard-nav-pills" role="tablist" :class="stepsClasses">
+      <div class="wizard-progress-nav" v-if="groupedProgress">
+        <div 
+          class="wizard-progress-group" 
+        >
+          <slot name="step" v-for="(group, index) in progressGroups"
+                :group="group"
+                :index="index">
+            <div class="wizard-progress-item">
+              <span class="wizard-progress-icon" :class="{ active: activeGroup === index }"></span>
+              <div class="wizard-progress-text">
+                {{ group }} 
+              </div>
+            </div>
+          </slot>
+        </div>
+      </div>
+      <ul class="wizard-nav wizard-nav-pills" role="tablist" :class="stepsClasses" v-else>
         <slot name="step" v-for="(tab, index) in tabs"
               :tab="tab"
               :index="index"
@@ -161,6 +177,21 @@
         validator: (value) => {
           return value >= 0
         }
+      },
+      groupedProgress: {
+        type: Boolean,
+        default: false
+      },
+      progressGroups: {
+        type: Array,
+        default: function () {
+          return [
+            'group A',
+            'group B',
+            'group C',
+            'group D'
+          ]
+        }
       }
     },
     provide () {
@@ -172,6 +203,8 @@
     data () {
       return {
         activeTabIndex: 0,
+        activeGroup: 0,
+        hideProgress: false,
         currentPercentage: 0,
         maxStep: 0,
         loading: false,
@@ -403,6 +436,12 @@
         }
         if (emitChangeEvent && this.activeTabIndex !== newIndex) {
           this.emitTabChange(oldIndex, newIndex)
+        }
+        if (newTab.group !== undefined) {
+          this.activeGroup = newTab.group
+          this.hideProgress = false
+        } else {
+          this.hideProgress = !!this.groupedProgress
         }
         this.activeTabIndex = newIndex
         this.activateTabAndCheckStep(this.activeTabIndex)

@@ -2,9 +2,10 @@
   <div>
     <form-wizard @on-complete="onComplete"
                  color="gray"
-                 error-color="#a94442">
+                 error-color="#a94442"
+                 :groupedProgress="true">
       <tab-content title="Personal details"
-                   icon="ti-user" :before-change="validateFirstTab">
+                   icon="ti-user" :before-change="validateFirstTab" :group="0">
         <vue-form-generator :model="model"
                             :schema="firstTabSchema"
                             :options="formOptions"
@@ -13,7 +14,7 @@
         </vue-form-generator>
       </tab-content>
       <tab-content title="Additional Info"
-                   icon="ti-settings" :before-change="validateSecondTab">
+                   icon="ti-settings" :before-change="validateSecondTab" :group="0">
         <vue-form-generator :model="model"
                             :schema="secondTabSchema"
                             :options="formOptions"
@@ -22,7 +23,7 @@
 
       </tab-content>
       <tab-content title="Last step"
-                   icon="ti-check">
+                   icon="ti-check" :group="1">
         <h4>Your json is ready!</h4>
       </tab-content>
     </form-wizard>

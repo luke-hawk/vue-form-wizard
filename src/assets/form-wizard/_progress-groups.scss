@@ -1,0 +1,43 @@
+.wizard-progress-nav {
+    background: white;
+    border-radius: 15px;
+    width: 666px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 150px;
+    margin: 0 auto;
+}
+
+.wizard-progress-group {
+    text-align: center;
+    vertical-align: middle;
+    display: contents;
+}
+
+.wizard-progress-item {
+  position: relative;
+  margin: 0 5%;
+  .wizard-progress-icon {
+    color: blue;
+    &:active {
+      color: red;
+    }
+  }
+  .wizard-progress-text {
+    margin-top: 10px;
+  }
+}
+
+.wizard-progress-item:after {
+    content: ' ';
+    width: 100%;
+    left: 125%;
+    position: absolute;
+    border: 1px solid #BEC4CC;
+    top: 50%;
+    border-radius: 10px;
+}
+.wizard-progress-item:last-child:after {
+  display: none;
+}

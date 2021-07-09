@@ -50,6 +50,10 @@
       additionalInfo: {
         type: Object,
         default: () => {}
+      },
+      group: {
+        type: Number,
+        required: false
       }
     },
     inject: ['addTab', 'removeTab'],
