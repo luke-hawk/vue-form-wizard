@@ -1,7 +1,7 @@
 .wizard-progress-nav {
     background: white;
     border-radius: 15px;
-    width: 666px;
+    max-width: 666px;
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -56,6 +56,11 @@
   border: 1px solid #BEC4CC;
   top: 8px;
   border-radius: 10px;
+}
+@media only screen and (max-width: 500px) {
+  .wizard-progress-icon:after {
+    width: 35px;
+  }
 }
 .wizard-progress-item:last-child {
   .wizard-progress-icon:after {
