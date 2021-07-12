@@ -437,7 +437,7 @@
         if (emitChangeEvent && this.activeTabIndex !== newIndex) {
           this.emitTabChange(oldIndex, newIndex)
         }
-        if (newTab.group !== undefined) {
+        if (newTab && newTab.group !== undefined) {
           this.activeGroup = newTab.group
           this.hideProgress = false
         } else {
